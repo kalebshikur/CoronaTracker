@@ -31,7 +31,17 @@ public class CoronaVirusDataService {
 
 	private final CloseableHttpClient httpClient = HttpClients.createDefault();
 	private static String Virus_Data_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-	List<LocationStats> allStats = new ArrayList<>();
+	
+	private List<LocationStats> allStats = new ArrayList<>();
+	
+	public List<LocationStats> getAllStats() {
+		return allStats;
+	}
+
+	public void setAllStats(List<LocationStats> allStats) {
+		this.allStats = allStats;
+	}
+
 	@PostConstruct
 	public void fetchVirusData() throws ClientProtocolException, IOException {	
 		List<LocationStats> newStats = new ArrayList<>();
@@ -53,6 +63,7 @@ public class CoronaVirusDataService {
 	        	locationStat.setState(record.get(0));
 	            locationStat.setCountry(record.get(1));
 	            locationStat.setLatestTotalReport(Integer.parseInt(record.get(record.size() -1 )));
+	            locationStat.setDifferenceFromPrevDay(Integer.parseInt(record.get(record.size() -1 ))-Integer.parseInt(record.get(record.size() -2)));
 	            newStats.add(locationStat);
 	           // System.out.println(locationStat);
 	        }

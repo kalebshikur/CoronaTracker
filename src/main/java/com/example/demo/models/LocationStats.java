@@ -4,6 +4,8 @@ public class LocationStats {
 	private String state;
 	private String country;
 	private int latestTotalReport;
+	private int differenceFromPrevDay;
+	
 	public String getState() {
 		return state;
 	}
@@ -21,6 +23,13 @@ public class LocationStats {
 	}
 	public void setLatestTotalReport(int latestTotalReport) {
 		this.latestTotalReport = latestTotalReport;
+	}
+
+	public int getDifferenceFromPrevDay() {
+		return differenceFromPrevDay;
+	}
+	public void setDifferenceFromPrevDay(int differenceFromPrevDay) {
+		this.differenceFromPrevDay = differenceFromPrevDay;
 	}
 	@Override
 	public String toString() {
